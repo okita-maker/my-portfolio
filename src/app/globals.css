@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-mincho), serif;
+}
+
+/* 強制的に背景を白ベースにする設定 */
+body {
+  background-color: #ffffff;
+  color: #334155;
+}
