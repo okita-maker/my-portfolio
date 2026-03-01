@@ -9,3 +9,22 @@ body {
   background-color: #ffffff;
   color: #334155;
 }
+
+/* 🌟 追加: ボヤけ防止と、CSSアニメーションの定義 */
+img {
+  image-rendering: -webkit-optimize-contrast; /* Safari */
+  image-rendering: crisp-edges;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3; /* 👈 暗い時でも30%の明るさをキープ */
+  }
+  50% {
+    opacity: 1; /* 👈 光る時は100%のまばゆい輝きに！ */
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 5s ease-in-out infinite; /* 👈 5秒周期で少しテンポアップ */
+}
