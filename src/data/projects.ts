@@ -1,26 +1,34 @@
 export const projects = [
   {
-    id: 1,
+    id: "tsumugi",
+    title: "古民家カフェ 紬 -TSUMUGI-",
+    image: "/tsumugi-site.png", // 👈 追加する紬の画像
+    demoUrl: "https://cafe-site-three-sigma.vercel.app/",
+    tags: ["ブランド構築", "客単価UP", "予約自動化"],
+    description: "「日常を忘れる隠れ家」というお店の世界観を、Web上でそのまま体感いただけるようデザインしました。24時間受付可能な予約システムを導入し、接客中の電話対応を減らすことで、目の前のお客様に集中できる環境をサポートします。"
+  },
+  {
+    id: "salon-ciel",
     title: "Private Salon Ciel",
-    description: "Next.jsとTailwind CSSで構築した、美容サロンの予約機能付き公式サイト。Gmail連携による自動返信機能を搭載し、業務効率化を実現。",
     image: "/salon-site.png",
-    tags: ["Next.js", "予約システム", "レスポンシブ"],
     demoUrl: "https://beauty-salon-lp.vercel.app/",
+    tags: ["サロン集客", "業務効率化", "スマホ最適化"],
+    description: "オーナー様お一人で切り盛りされるサロンに向けた公式サイトです。メール連携による自動返信機能を搭載し、施術中や営業時間外の予約の取りこぼしを防ぎます。お客様がスマホから直感的に操作できる優しい使い心地にこだわりました。"
   },
   {
-    id: 2,
+    id: "ai-gym-pro",
     title: "AI Gym Pro",
-    description: "スタイリッシュなデザインのフィットネスジム公式サイト。スマホ閲覧時の快適さを追求し、入会率向上を意識したUI設計。",
     image: "/gym-site.png",
-    tags: ["LP制作", "デザイン", "高速表示"],
     demoUrl: "https://ai-gym-pro.pages.dev/",
+    tags: ["LP制作", "体験申込UP", "高速表示"],
+    description: "フィットネスジムの魅力をダイレクトに伝え、体験申し込みへとスムーズに導くランディングページ（LP）です。ユーザーの離脱を防ぐため、写真がパッと瞬時に表示される最新の技術を採用し、入会へのハードルを優しく下げる設計を施しています。"
   },
   {
-    id: 3,
+    id: "space-cafe",
     title: "宇宙カフェ (Space Cafe)",
-    description: "世界観を大切にしたコンセプトカフェのWebサイト。没入感のあるデザインで、店舗の魅力をWeb上で表現。",
     image: "/space-cafe.png",
-    tags: ["ブランディング", "アニメーション", "世界観"],
     demoUrl: "https://ai-monetize-web.pages.dev/",
-  },
+    tags: ["コンセプト設計", "アニメーション", "ファン化"],
+    description: "お店の個性を最大限に引き出す、没入感のあるWebサイトです。ただ情報を載せるだけでなく、サイトを開いた瞬間に「ここに行ってみたい！」とお客様の心を動かすようなアニメーションを取り入れ、お店のファン作りをお手伝いします。"
+  }
 ];
