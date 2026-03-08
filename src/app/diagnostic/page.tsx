@@ -15,8 +15,8 @@ export default function DiagnosticForm() {
     industryOther: "",
     mainWorry: [] as string[],
     mainWorryOther: "",
-    mainProduct: "", // 新規：主力商品（テキスト）
-    averageSpend: "", // 新規：平均客単価（選択式）
+    mainProduct: "",
+    averageSpend: "",
     averageSpendOther: "",
     operationStress: [] as string[],
     operationStressOther: "",
@@ -85,7 +85,7 @@ export default function DiagnosticForm() {
 
     if (!formData.targetCustomer) return setStepError("「8. 成長させたい方向」を選択してください。");
     if (formData.targetCustomer === "その他" && !formData.targetCustomerOther) return setStepError("「その他」の理想の未来をご記入ください。");
-    if (!formData.url) return setStepError("「9. URL」をご記入ください。");
+    if (!formData.url) return setStepError("「9. URL」をご記入ください（ない場合は「なし」）。");
 
     setStatus("loading");
 
@@ -212,7 +212,6 @@ export default function DiagnosticForm() {
                 )}
               </div>
 
-              {/* 新規：主力商品（テキスト入力） */}
               <div>
                 <label className="block text-sm text-white/80 tracking-widest mb-4">3. お店の主力商品、または看板メニューは何ですか</label>
                 <input type="text" name="mainProduct" value={formData.mainProduct} onChange={handleChange}
@@ -220,7 +219,6 @@ export default function DiagnosticForm() {
                        placeholder="例：自家焙煎コーヒー、カット＆カラー、手作りハンバーグなど" />
               </div>
 
-              {/* 新規：平均客単価（シンプルな選択式） */}
               <div>
                 <label className="block text-sm text-white/80 tracking-widest mb-4">4. 現在の平均的な客単価を教えてください（1つ選択）</label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -240,7 +238,7 @@ export default function DiagnosticForm() {
               {stepError && <p className="text-red-400 text-xs mb-3 tracking-widest">{stepError}</p>}
               <button type="button" onClick={handleNextStep}
                       className="bg-white text-[#080d1a] px-8 py-4 text-sm tracking-widest rounded-sm hover:bg-white/80 transition">
-                次へ進む →
+次へ進む →
               </button>
             </div>
           </div>
@@ -327,10 +325,14 @@ export default function DiagnosticForm() {
               </div>
 
               <div>
-                <label className="block text-sm text-white/80 tracking-widest mb-4">9. お店のWebサイト、またはInstagramのURLをご記入ください</label>
-                <input name="url" type="url" value={formData.url} onChange={handleChange} 
+                <label className="block text-sm text-white/80 tracking-widest mb-4">
+                  9. お店のWebサイト、Instagram、またはGoogleマップのURLをご記入ください<br/>
+                  <span className="text-xs text-white/50 font-normal">（まだない場合は「なし」とご記入ください）</span>
+                </label>
+                {/* type="url" を type="text" に変更し、「なし」の入力を許可 */}
+                <input name="url" type="text" value={formData.url} onChange={handleChange} 
                        className="w-full bg-[#0a1122] border border-white/20 rounded-sm p-4 text-white placeholder-white/20 focus:outline-none focus:border-indigo-400 transition text-sm" 
-                       placeholder="https://..." />
+                       placeholder="https://... または「なし」" />
               </div>
             </div>
             

@@ -28,6 +28,7 @@ export async function POST(request: Request) {
 ・最も待ち時間が発生するタイミング：${data.waitingTime}
 ・Google口コミの現状スコアと件数：${data.googleReviewStatus}
 ・理想の成長方向：${data.targetCustomer}
+・店舗URL（Web/SNS/Googleマップ等）：${data.url}
 
 # 出力条件（厳守）
 1. 宛先は「店舗オーナー様」とし、提出者である「沖田」が直接語りかけるような、丁寧で温かみのある敬語（です・ます調）で記述してください。
