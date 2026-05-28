@@ -32,21 +32,57 @@ const FadeIn = ({ children, delay = 0 }: FadeInProps) => {
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // 今画面の中央付近にどのセクションが表示されているかを計算（ScrollSpy機能）
+      const sections = ["message", "skills", "works", "about"];
+      let current = "";
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 3 && rect.bottom >= 100) {
+            current = section;
+          }
+        }
+      }
+      setActiveSection(current);
     };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // 初期描画時にも一度判定を実行
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // 現在のセクションに合わせてナビゲーションのデザインを動的に変更する関数
+  const getNavClass = (section: string) => {
+    const isActive = activeSection === section;
+    if (scrolled) {
+      return `transition pb-1 border-b ${
+        isActive
+          ? "border-slate-900 text-slate-900" // アクティブな時はアンダーバーを表示
+          : "border-transparent md:hover:text-slate-900 md:hover:border-slate-900" // スマホではホバー効果を無効化（md:を追加）
+      }`;
+    } else {
+      return `transition pb-1 border-b ${
+        isActive
+          ? "border-white text-white"
+          : "border-transparent md:hover:text-white md:hover:border-white"
+      }`;
+    }
+  };
 
   return (
     <div className="min-h-screen font-serif text-slate-800 bg-white scroll-smooth relative">
       
       <div className="relative z-10">
         
-        {/* ナビゲーション（文字はもとのシンプルな色・ホバーに変更） */}
+        {/* ナビゲーション（アクティブ判定関数を適用） */}
         <nav 
           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 md:py-6 px-4 md:px-8 ${
             scrolled ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100" : "bg-transparent"
@@ -56,11 +92,15 @@ export default function Home() {
             <ul className={`flex flex-wrap justify-center gap-x-6 gap-y-3 text-[11px] md:text-sm tracking-[0.2em] font-medium transition-colors duration-500 ${
               scrolled ? "text-slate-500" : "text-white/80"
             }`}>
-              <li><a href="#message" className={`transition pb-1 border-b border-transparent ${scrolled ? "hover:text-slate-900 hover:border-slate-900" : "hover:text-white hover:border-white"}`}>MESSAGE</a></li>
-              <li><a href="#skills" className={`transition pb-1 border-b border-transparent ${scrolled ? "hover:text-slate-900 hover:border-slate-900" : "hover:text-white hover:border-white"}`}>SKILLS</a></li>
-              <li><a href="#works" className={`transition pb-1 border-b border-transparent ${scrolled ? "hover:text-slate-900 hover:border-slate-900" : "hover:text-white hover:border-white"}`}>WORKS</a></li>
-              <li><a href="#about" className={`transition pb-1 border-b border-transparent ${scrolled ? "hover:text-slate-900 hover:border-slate-900" : "hover:text-white hover:border-white"}`}>ABOUT</a></li>
-              <li><Link href="/contact" className={`transition pb-1 border-b border-transparent ${scrolled ? "hover:text-slate-900 hover:border-slate-900" : "hover:text-white hover:border-white"}`}>CONTACT</Link></li>
+              <li><a href="#message" className={getNavClass("message")}>MESSAGE</a></li>
+              <li><a href="#skills" className={getNavClass("skills")}>SKILLS</a></li>
+              <li><a href="#works" className={getNavClass("works")}>WORKS</a></li>
+              <li><a href="#about" className={getNavClass("about")}>ABOUT</a></li>
+              <li>
+                <Link href="/contact" className={`transition pb-1 border-b border-transparent ${scrolled ? "md:hover:text-slate-900 md:hover:border-slate-900" : "md:hover:text-white md:hover:border-white"}`}>
+                  CONTACT
+                </Link>
+              </li>
             </ul>
           </div>
         </nav>
@@ -75,7 +115,6 @@ export default function Home() {
               className="object-cover opacity-85"
               priority
             />
-            {/* 下のMESSAGEセクション（白）へ自然に繋がるグラデーション */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#080d1a]/40 via-[#080d1a]/20 to-white"></div>
           </div>
 
@@ -93,11 +132,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 2. MESSAGE エリア（背景：白） */}
+        {/* 2. MESSAGE エリア */}
         <section id="message" className="py-24 px-6 bg-white">
           <FadeIn>
             <div className="container mx-auto max-w-3xl text-center">
-              {/* 文字はもとのシンプルなデザインに修正 */}
               <h2 className="text-2xl md:text-3xl text-slate-800 tracking-[0.3em] mb-12 ml-[0.3em] font-light">
                 ・ MESSAGE ・
               </h2>
@@ -118,7 +156,7 @@ export default function Home() {
           </FadeIn>
         </section>
 
-        {/* 3. SKILLS エリア（背景：違和感のない上品な薄いグレー） */}
+        {/* 3. SKILLS エリア */}
         <section id="skills" className="py-24 px-6 bg-slate-50 border-y border-slate-100">
           <div className="container mx-auto max-w-5xl">
             <FadeIn>
@@ -168,7 +206,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. WORKS エリア（文字をWORKSに戻し、背景：白） */}
+        {/* 4. WORKS エリア */}
         <section id="works" className="py-24 px-6 bg-white">
           <div className="container mx-auto max-w-6xl">
             <FadeIn>
@@ -194,7 +232,6 @@ export default function Home() {
                       <h3 className="text-xl md:text-2xl text-slate-800 tracking-widest mb-4 font-medium">{project.title}</h3>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tags.map((tag) => (
-                          /* タグをもとの落ち着いたスレートトーンに変更 */
                           <span key={tag} className="text-[10px] md:text-xs text-slate-600 border border-slate-200 px-3 py-1 rounded-sm tracking-widest bg-slate-50">{tag}</span>
                         ))}
                       </div>
@@ -209,7 +246,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. ABOUT エリア（背景：上品な薄いグレー） */}
+        {/* 5. ABOUT エリア */}
         <section id="about" className="py-24 px-6 border-t border-slate-100 bg-slate-50">
           <div className="container mx-auto max-w-4xl">
             <FadeIn>
@@ -221,7 +258,6 @@ export default function Home() {
 
             <FadeIn>
               <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16">
-                {/* 枠線をもとのシンプルなグレー系に戻しました */}
                 <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shrink-0 border border-slate-200 bg-white p-2">
                   <div className="relative w-full h-full rounded-full overflow-hidden">
                     <Image src="/profile.png" alt="Profile" fill className="object-cover transition duration-500" />
@@ -248,7 +284,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. CONTACT CTAエリア（背景：白、ボタンをもとのシックな黒に戻しました） */}
+        {/* 6. CONTACT CTAエリア */}
         <section className="py-32 px-6 border-t border-slate-100 bg-white text-center">
           <FadeIn>
             <div className="container mx-auto max-w-2xl">
@@ -259,7 +295,6 @@ export default function Home() {
                 ご覧いただきありがとうございます。<br className="hidden md:block"/>
                 ポートフォリオに関するお問い合わせ等はこちらからお願いいたします。
               </p>
-              {/* ボタンをシンプルで清潔感のある元のダークトーンに戻しました */}
               <Link 
                 href="/contact" 
                 className="inline-block border border-slate-800 text-slate-800 px-12 py-5 text-sm md:text-base tracking-[0.2em] transition duration-500 rounded-sm hover:bg-slate-800 hover:text-white"

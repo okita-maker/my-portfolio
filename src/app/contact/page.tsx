@@ -53,7 +53,7 @@ export default function Contact() {
         <div className="w-full max-w-2xl bg-white border border-slate-200 p-10 md:p-16 rounded-sm shadow-xl">
           <div className="text-center mb-12">
             <h1 className="text-2xl text-slate-800 tracking-[0.3em] mb-3 ml-[0.3em]">
-              ・ CONTACT ・
+               CONTACT
             </h1>
             <p className="text-xs text-slate-400 tracking-widest">お問い合わせ</p>
           </div>
