@@ -1,7 +1,7 @@
 export const projects = [
   {
     id: "tsumugi",
-    title: "古民家カフェ（非同期予約連携サイト）",
+    title: "古民家カフェ",
     image: "/tsumugi-site.png",
     demoUrl: "https://cafe-site-three-sigma.vercel.app/",
     tags: ["Next.js", "TypeScript", "API Routes", "Nodemailer"],
@@ -9,7 +9,7 @@ export const projects = [
   },
   {
     id: "salon-ciel",
-    title: "美容サロン（コンポーネント指向・UI設計）",
+    title: "美容サロン",
     image: "/salon-site.png",
     demoUrl: "https://beauty-salon-lp.vercel.app/",
     tags: ["React", "Tailwind CSS", "レスポンシブデザイン", "UI/UX"],
@@ -17,7 +17,7 @@ export const projects = [
   },
   {
     id: "ai-gym-pro",
-    title: "AIパーソナルジム（パフォーマンス最適化LP）",
+    title: "AIパーソナルジム",
     image: "/gym-site.png",
     demoUrl: "https://ai-gym-pro.pages.dev/",
     tags: ["Next.js", "画像最適化", "Web Vitals", "高速表示"],
@@ -25,7 +25,7 @@ export const projects = [
   },
   {
     id: "space-cafe",
-    title: "宇宙カフェ（インタラクティブ・モーショングラフィックス）",
+    title: "宇宙カフェ",
     image: "/space-cafe.png",
     demoUrl: "https://ai-monetize-web.pages.dev/",
     tags: ["CSS Animation", "Intersection Observer", "フロントエンド"],
